@@ -29,7 +29,7 @@
             overflow-x: hidden;
         }
 
-        /* Animated Background */
+        /* Enhanced Animated Background - Responsive */
         body::before {
             content: '';
             position: fixed;
@@ -47,7 +47,7 @@
             50% { transform: translateY(-20px) rotate(180deg); }
         }
 
-        /* Main Container */
+        /* Responsive Main Container */
         .login-container {
             background: rgba(255, 255, 255, 0.95);
             backdrop-filter: blur(20px);
@@ -60,6 +60,7 @@
             position: relative;
             overflow: hidden;
             animation: slideIn 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            transition: all 0.3s ease;
         }
 
         @keyframes slideIn {
@@ -79,26 +80,38 @@
             top: 0;
             left: 0;
             right: 0;
-            height: clamp(4px, 1vw, 6px);
+            height: 4px;
             background: linear-gradient(90deg, #009dff, #00d4ff);
             border-radius: clamp(20px, 5vw, 30px) clamp(20px, 5vw, 30px) 0 0;
         }
 
-        /* Header */
+        /* Responsive Header */
         .login-header {
             text-align: center;
             margin-bottom: clamp(2rem, 5vw, 2.5rem);
         }
 
+        /* Fixed EDURACK Logo */
         .logo {
             font-size: clamp(1.8rem, 6vw, 2.2rem);
             font-weight: 800;
-            background: linear-gradient(135deg, #009dff, #00d4ff);
+            color: #009dff; /* Fallback color */
+            background: linear-gradient(135deg, #009dff 0%, #00d4ff 50%, #0066cc 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
             margin-bottom: clamp(0.5rem, 2vw, 1rem);
             letter-spacing: -0.02em;
+            display: inline-block;
+            position: relative;
+        }
+
+        /* Fallback for browsers that don't support background-clip */
+        @supports not (-webkit-background-clip: text) {
+            .logo {
+                background: none;
+                color: #009dff;
+            }
         }
 
         .login-title {
@@ -114,7 +127,7 @@
             line-height: 1.5;
         }
 
-        /* Tab Switcher */
+        /* Responsive Tab Switcher */
         .tab-switcher {
             display: flex;
             background: #f1f5f9;
@@ -160,7 +173,204 @@
             to { opacity: 1; transform: translateY(0); }
         }
 
-        /* Social Login Buttons */
+        /* Phone Number Form */
+        .phone-number-form {
+            display: none;
+            animation: slideInUp 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+
+        .phone-number-form.active {
+            display: block;
+        }
+
+        .phone-header {
+            text-align: center;
+            margin-bottom: clamp(2rem, 5vw, 2.5rem);
+        }
+
+        .phone-title {
+            font-size: clamp(1.3rem, 3.5vw, 1.5rem);
+            font-weight: 700;
+            color: #1a1a1a;
+            margin-bottom: clamp(0.5rem, 1vw, 0.75rem);
+        }
+
+        .phone-subtitle {
+            color: #666;
+            font-size: clamp(0.85rem, 2.2vw, 0.95rem);
+            line-height: 1.5;
+        }
+
+        /* Phone Input Group - Fixed Design */
+        .phone-input-group {
+            position: relative;
+            margin-bottom: clamp(1.5rem, 4vw, 2rem);
+            display: flex;
+            border: clamp(1px, 0.3vw, 2px) solid #e5e7eb;
+            border-radius: clamp(12px, 3vw, 15px);
+            background: white;
+            transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            overflow: hidden;
+        }
+
+        .phone-input-group:focus-within {
+            border-color: #009dff;
+            box-shadow: 0 0 0 3px rgba(0, 157, 255, 0.1);
+            transform: translateY(-1px);
+        }
+
+        .country-code {
+            display: flex;
+            align-items: center;
+            padding: clamp(0.875rem, 2.5vw, 1rem) clamp(0.75rem, 2vw, 1rem);
+            background: #f8fafc;
+            border-right: 1px solid #e5e7eb;
+            color: #374151;
+            font-weight: 600;
+            font-size: clamp(0.875rem, 2.2vw, 1rem);
+            min-width: clamp(3rem, 8vw, 3.5rem);
+            justify-content: center;
+        }
+
+        .phone-input {
+            flex: 1;
+            padding: clamp(0.875rem, 2.5vw, 1rem);
+            border: none;
+            background: transparent;
+            font-size: clamp(0.875rem, 2.2vw, 1rem);
+            color: #374151;
+            outline: none;
+        }
+
+        .phone-input::placeholder {
+            color: #9ca3af;
+        }
+
+        /* Phone OTP Form */
+        .phone-otp-form {
+            display: none;
+            animation: slideInUp 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+
+        .phone-otp-form.active {
+            display: block;
+        }
+
+        .otp-header {
+            text-align: center;
+            margin-bottom: clamp(2rem, 5vw, 2.5rem);
+        }
+
+        .otp-title {
+            font-size: clamp(1.3rem, 3.5vw, 1.5rem);
+            font-weight: 700;
+            color: #1a1a1a;
+            margin-bottom: clamp(0.5rem, 1vw, 0.75rem);
+        }
+
+        .otp-subtitle {
+            color: #666;
+            font-size: clamp(0.85rem, 2.2vw, 0.95rem);
+            line-height: 1.5;
+        }
+
+        .phone-number-display {
+            background: #f8fafc;
+            padding: clamp(0.75rem, 2vw, 1rem);
+            border-radius: clamp(8px, 2vw, 12px);
+            margin: clamp(1rem, 3vw, 1.5rem) 0;
+            text-align: center;
+            font-weight: 600;
+            color: #009dff;
+            border: 2px solid #e2e8f0;
+        }
+
+        .otp-input-group {
+            display: flex;
+            justify-content: center;
+            gap: clamp(0.5rem, 2vw, 1rem);
+            margin-bottom: clamp(1.5rem, 4vw, 2rem);
+        }
+
+        .otp-digit {
+            width: clamp(3rem, 8vw, 4rem);
+            height: clamp(3rem, 8vw, 4rem);
+            border: 2px solid #e2e8f0;
+            border-radius: clamp(8px, 2vw, 12px);
+            text-align: center;
+            font-size: clamp(1.2rem, 4vw, 1.5rem);
+            font-weight: 600;
+            color: #374151;
+            background: white;
+            transition: all 0.3s ease;
+        }
+
+        .otp-digit:focus {
+            outline: none;
+            border-color: #009dff;
+            box-shadow: 0 0 0 3px rgba(0, 157, 255, 0.1);
+            transform: scale(1.05);
+        }
+
+        .otp-digit.filled {
+            border-color: #009dff;
+            background: rgba(0, 157, 255, 0.05);
+        }
+
+        .otp-digit.error {
+            border-color: #ef4444;
+            background: rgba(239, 68, 68, 0.05);
+            animation: shake 0.5s ease-in-out;
+        }
+
+        @keyframes shake {
+            0%, 100% { transform: translateX(0); }
+            25% { transform: translateX(-5px); }
+            75% { transform: translateX(5px); }
+        }
+
+        .resend-otp {
+            text-align: center;
+            margin-top: clamp(1rem, 3vw, 1.5rem);
+        }
+
+        .resend-link {
+            color: #009dff;
+            text-decoration: none;
+            font-size: clamp(0.85rem, 2.2vw, 0.95rem);
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+
+        .resend-link:hover {
+            text-decoration: underline;
+            color: #0066cc;
+        }
+
+        .resend-link.disabled {
+            color: #9ca3af;
+            cursor: not-allowed;
+            pointer-events: none;
+        }
+
+        .back-button {
+            background: none;
+            border: none;
+            color: #009dff;
+            font-size: clamp(0.85rem, 2.2vw, 0.95rem);
+            cursor: pointer;
+            margin-bottom: clamp(1rem, 3vw, 1.5rem);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            transition: all 0.3s ease;
+        }
+
+        .back-button:hover {
+            color: #0066cc;
+        }
+
+        /* Responsive Social Login Buttons */
         .social-login {
             margin-bottom: clamp(1.5rem, 4vw, 2rem);
         }
@@ -213,7 +423,7 @@
         .google-btn i { color: #ea4335; }
         .phone-btn i { color: #10b981; }
 
-        /* Divider */
+        /* Responsive Divider */
         .divider {
             display: flex;
             align-items: center;
@@ -235,7 +445,7 @@
             background: rgba(255, 255, 255, 0.95);
         }
 
-        /* Form Groups */
+        /* Responsive Form Groups */
         .form-group {
             margin-bottom: clamp(1rem, 3vw, 1.5rem);
         }
@@ -270,7 +480,7 @@
             color: #9ca3af;
         }
 
-        /* Select Dropdown */
+        /* Responsive Select Dropdown */
         .form-select {
             width: 100%;
             padding: clamp(0.875rem, 2.5vw, 1rem);
@@ -311,7 +521,7 @@
             color: #009dff;
         }
 
-        /* Submit Button */
+        /* Responsive Submit Button */
         .submit-btn {
             width: 100%;
             padding: clamp(1rem, 3vw, 1.25rem);
@@ -391,7 +601,7 @@
             color: #0066cc;
         }
 
-        /* User Details Form (Hidden initially) */
+        /* User Details Form */
         .user-details-form {
             display: none;
             animation: slideInUp 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
@@ -508,7 +718,367 @@
             box-shadow: 0 4px 15px rgba(16, 185, 129, 0.3);
         }
 
-        /* Mobile Optimizations */
+        /* Error Messages */
+        .error-message {
+            color: #ef4444;
+            font-size: clamp(0.8rem, 2vw, 0.85rem);
+            margin-top: clamp(0.25rem, 1vw, 0.5rem);
+            display: none;
+        }
+
+        .form-input.error, .phone-input.error {
+            border-color: #ef4444;
+            box-shadow: 0 0 0 3px rgba(239, 68, 68, 0.1);
+        }
+
+        /* Hide/Show Elements */
+        .hidden {
+            display: none !important;
+        }
+
+        .visible {
+            display: block !important;
+        }
+
+        /* ===== DESKTOP ENHANCEMENTS (1024px+) ===== */
+        @media (min-width: 1024px) {
+            html {
+                font-size: 16px;
+            }
+
+            body {
+                background: linear-gradient(135deg, #f8fbff 0%, #e3f2fd 30%, #bbdefb 70%, #90caf9 100%);
+                padding: 2rem;
+            }
+
+            /* Enhanced background for desktop */
+            body::before {
+                background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1920 1080"><defs><radialGradient id="a" cx="50%" cy="50%"><stop offset="0%" stop-color="%23009dff" stop-opacity="0.15"/><stop offset="100%" stop-color="%23009dff" stop-opacity="0"/></radialGradient><radialGradient id="b" cx="50%" cy="50%"><stop offset="0%" stop-color="%2300d4ff" stop-opacity="0.1"/><stop offset="100%" stop-color="%2300d4ff" stop-opacity="0"/></radialGradient></defs><circle cx="300" cy="200" r="150" fill="url(%23a)"><animate attributeName="r" values="150;200;150" dur="6s" repeatCount="indefinite"/></circle><circle cx="1600" cy="300" r="120" fill="url(%23b)"><animate attributeName="r" values="120;180;120" dur="4s" repeatCount="indefinite"/></circle><circle cx="800" cy="800" r="180" fill="url(%23a)"><animate attributeName="r" values="180;250;180" dur="8s" repeatCount="indefinite"/></circle><circle cx="1400" cy="700" r="100" fill="url(%23b)"><animate attributeName="r" values="100;140;100" dur="5s" repeatCount="indefinite"/></circle></svg>');
+                animation: float 25s ease-in-out infinite;
+            }
+
+            @keyframes float {
+                0%, 100% { transform: translateY(0px) rotate(0deg); }
+                33% { transform: translateY(-15px) rotate(120deg); }
+                66% { transform: translateY(-10px) rotate(240deg); }
+            }
+
+            /* Desktop container enhancements */
+            .login-container {
+                max-width: 520px;
+                padding: 3.5rem;
+                border-radius: 24px;
+                box-shadow: 
+                    0 32px 64px rgba(0, 157, 255, 0.15),
+                    0 16px 32px rgba(0, 157, 255, 0.1),
+                    inset 0 1px 0 rgba(255, 255, 255, 0.8);
+            }
+
+            .login-container:hover {
+                transform: translateY(-2px);
+                box-shadow: 
+                    0 40px 80px rgba(0, 157, 255, 0.2),
+                    0 20px 40px rgba(0, 157, 255, 0.15),
+                    inset 0 1px 0 rgba(255, 255, 255, 0.8);
+            }
+
+            .login-container::before {
+                height: 6px;
+                background: linear-gradient(90deg, #009dff, #00d4ff, #009dff);
+                background-size: 200% 100%;
+                animation: shimmer 3s ease-in-out infinite;
+            }
+
+            @keyframes shimmer {
+                0%, 100% { background-position: 200% 0; }
+                50% { background-position: -200% 0; }
+            }
+
+            /* Desktop header enhancements */
+            .logo {
+                font-size: 2.8rem;
+                font-weight: 900;
+                text-shadow: 0 4px 8px rgba(0, 157, 255, 0.3);
+            }
+
+            .login-title {
+                font-size: 2.2rem;
+                line-height: 1.2;
+            }
+
+            .login-subtitle {
+                font-size: 1.1rem;
+                line-height: 1.6;
+                max-width: 400px;
+                margin: 0 auto;
+            }
+
+            /* Desktop phone input enhancements */
+            .phone-input-group {
+                border: 2px solid #e2e8f0;
+                border-radius: 16px;
+            }
+
+            .phone-input-group:focus-within {
+                box-shadow: 0 0 0 4px rgba(0, 157, 255, 0.1);
+                transform: translateY(-2px);
+            }
+
+            .country-code {
+                padding: 1.25rem 1rem;
+                font-size: 1rem;
+                min-width: 3.5rem;
+            }
+
+            .phone-input {
+                padding: 1.25rem 1.5rem;
+                font-size: 1rem;
+            }
+
+            /* Desktop OTP enhancements */
+            .otp-digit {
+                width: 4rem;
+                height: 4rem;
+                font-size: 1.5rem;
+            }
+
+            .otp-input-group {
+                gap: 1rem;
+            }
+
+            /* Desktop tab enhancements */
+            .tab-switcher {
+                background: #f8fafc;
+                border-radius: 16px;
+                padding: 6px;
+                box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.06);
+            }
+
+            .tab-button {
+                padding: 1.25rem 2rem;
+                border-radius: 12px;
+                font-size: 1rem;
+                color: #64748b;
+            }
+
+            .tab-button.active {
+                box-shadow: 
+                    0 4px 12px rgba(0, 157, 255, 0.15),
+                    0 2px 4px rgba(0, 157, 255, 0.1);
+                transform: translateY(-1px);
+            }
+
+            .tab-button:hover:not(.active) {
+                color: #009dff;
+                background: rgba(0, 157, 255, 0.05);
+            }
+
+            /* Desktop form enhancements */
+            .social-btn {
+                padding: 1.25rem 1.5rem;
+                border: 2px solid #e2e8f0;
+                border-radius: 16px;
+                font-size: 1rem;
+                gap: 0.875rem;
+                margin-bottom: 1rem;
+            }
+
+            .social-btn:hover {
+                transform: translateY(-3px);
+                box-shadow: 0 8px 25px rgba(0, 157, 255, 0.15);
+            }
+
+            .social-btn:active {
+                transform: translateY(-1px);
+            }
+
+            .social-btn i {
+                font-size: 1.25rem;
+            }
+
+            .form-input, .form-select {
+                padding: 1.25rem 1.5rem;
+                border: 2px solid #e2e8f0;
+                border-radius: 16px;
+                font-size: 1rem;
+                line-height: 1.5;
+            }
+
+            .form-input:focus, .form-select:focus, .phone-input:focus {
+                box-shadow: 0 0 0 4px rgba(0, 157, 255, 0.1);
+                transform: translateY(-2px);
+            }
+
+            .form-select {
+                appearance: none;
+                background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="%23009dff"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>');
+                background-repeat: no-repeat;
+                background-position: right 1rem center;
+                background-size: 1.25rem;
+            }
+
+            .password-toggle {
+                right: 1.25rem;
+                font-size: 1.1rem;
+                padding: 0.5rem;
+                border-radius: 8px;
+            }
+
+            .password-toggle:hover {
+                background: rgba(0, 157, 255, 0.1);
+            }
+
+            .submit-btn {
+                padding: 1.5rem 2rem;
+                border-radius: 16px;
+                font-size: 1.1rem;
+                margin-bottom: 2rem;
+                text-transform: uppercase;
+                letter-spacing: 0.5px;
+            }
+
+            .submit-btn:hover {
+                transform: translateY(-4px);
+                box-shadow: 0 12px 35px rgba(0, 157, 255, 0.4);
+            }
+
+            .submit-btn:active {
+                transform: translateY(-2px);
+            }
+
+            .forgot-password {
+                font-size: 1rem;
+                padding: 0.5rem 1rem;
+                border-radius: 8px;
+            }
+
+            .forgot-password:hover {
+                background: rgba(0, 157, 255, 0.1);
+            }
+
+            /* Desktop success message enhancements */
+            .success-icon {
+                width: 100px;
+                height: 100px;
+                font-size: 2.5rem;
+                box-shadow: 0 8px 25px rgba(16, 185, 129, 0.3);
+            }
+
+            .success-title {
+                font-size: 1.8rem;
+            }
+
+            .success-text {
+                font-size: 1.1rem;
+                line-height: 1.6;
+            }
+
+            .redirect-btn {
+                padding: 1.25rem 2.5rem;
+                border-radius: 16px;
+                font-size: 1.1rem;
+                text-transform: uppercase;
+                letter-spacing: 0.5px;
+            }
+
+            .redirect-btn:hover {
+                transform: translateY(-3px);
+                box-shadow: 0 8px 25px rgba(16, 185, 129, 0.3);
+            }
+
+            /* Desktop progress indicator */
+            .progress-step {
+                width: 12px;
+                height: 12px;
+                margin: 0 8px;
+            }
+
+            .progress-step.active {
+                transform: scale(1.3);
+                box-shadow: 0 0 0 4px rgba(0, 157, 255, 0.2);
+            }
+
+            .progress-step.active::after {
+                content: '';
+                position: absolute;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -50%);
+                width: 6px;
+                height: 6px;
+                background: white;
+                border-radius: 50%;
+            }
+
+            /* Desktop hover effects */
+            .form-group:hover .form-label {
+                color: #009dff;
+                transition: color 0.3s ease;
+            }
+
+            .login-container::after {
+                content: '';
+                position: absolute;
+                top: -2px;
+                left: -2px;
+                right: -2px;
+                bottom: -2px;
+                background: linear-gradient(45deg, #009dff, #00d4ff, #009dff);
+                border-radius: 26px;
+                z-index: -1;
+                opacity: 0;
+                transition: opacity 0.3s ease;
+            }
+
+            .login-container:hover::after {
+                opacity: 0.1;
+            }
+        }
+
+        /* ===== LARGE DESKTOP ENHANCEMENTS (1440px+) ===== */
+        @media (min-width: 1440px) {
+            .login-container {
+                max-width: 580px;
+                padding: 4rem;
+            }
+
+            .logo {
+                font-size: 3.2rem;
+            }
+
+            .login-title {
+                font-size: 2.5rem;
+            }
+
+            .login-subtitle {
+                font-size: 1.2rem;
+            }
+
+            .form-input, .form-select, .phone-input {
+                padding: 1.5rem 1.75rem;
+                font-size: 1.1rem;
+            }
+
+            .submit-btn {
+                padding: 1.75rem 2.5rem;
+                font-size: 1.2rem;
+            }
+
+            .social-btn {
+                padding: 1.5rem 2rem;
+                font-size: 1.1rem;
+            }
+        }
+
+        /* ===== ULTRA-WIDE DESKTOP (1920px+) ===== */
+        @media (min-width: 1920px) {
+            .login-container {
+                max-width: 640px;
+                padding: 4.5rem;
+            }
+        }
+
+        /* Mobile Optimizations (Keep existing) */
         @media (max-width: 480px) {
             body {
                 padding: 1rem;
@@ -528,49 +1098,36 @@
             }
 
             .form-input,
-            .form-select {
+            .form-select,
+            .phone-input {
                 padding: 1rem;
+            }
+
+            .country-code {
+                padding: 1rem 0.75rem;
+                min-width: 3rem;
             }
 
             .submit-btn {
                 padding: 1.125rem;
             }
+
+            .otp-digit {
+                width: 2.5rem;
+                height: 2.5rem;
+                font-size: 1rem;
+            }
+
+            .otp-input-group {
+                gap: 0.5rem;
+            }
         }
 
-        /* Tablet Optimizations */
+        /* Tablet Optimizations (Keep existing) */
         @media (min-width: 481px) and (max-width: 768px) {
             .login-container {
                 max-width: 400px;
             }
-        }
-
-        /* Desktop Optimizations */
-        @media (min-width: 769px) {
-            .login-container {
-                max-width: 450px;
-            }
-        }
-
-        /* Error Messages */
-        .error-message {
-            color: #ef4444;
-            font-size: clamp(0.8rem, 2vw, 0.85rem);
-            margin-top: clamp(0.25rem, 1vw, 0.5rem);
-            display: none;
-        }
-
-        .form-input.error {
-            border-color: #ef4444;
-            box-shadow: 0 0 0 3px rgba(239, 68, 68, 0.1);
-        }
-
-        /* Hide/Show Elements */
-        .hidden {
-            display: none !important;
-        }
-
-        .visible {
-            display: block !important;
         }
     </style>
 </head>
@@ -698,6 +1255,71 @@
             </div>
         </div>
 
+        <!-- Phone Number Input Form -->
+        <div id="phoneNumberForm" class="phone-number-form">
+            <button class="back-button" onclick="goBackToAuth()">
+                <i class="fas fa-arrow-left"></i>
+                Back
+            </button>
+            
+            <div class="phone-header">
+                <div class="logo">EDURACK</div>
+                <h2 class="phone-title">Enter Phone Number</h2>
+                <p class="phone-subtitle">We'll send you a verification code</p>
+            </div>
+
+            <form onsubmit="handlePhoneSubmit(event)">
+                <div class="form-group">
+                    <label class="form-label">Phone Number</label>
+                    <div class="phone-input-group">
+                        <div class="country-code">+91</div>
+                        <input type="tel" class="phone-input" placeholder="Enter your phone number" maxlength="10" required>
+                    </div>
+                    <div class="error-message">Please enter a valid 10-digit phone number</div>
+                </div>
+
+                <button type="submit" class="submit-btn">
+                    <div class="loading-spinner"></div>
+                    Send OTP
+                </button>
+            </form>
+        </div>
+
+        <!-- Phone OTP Verification Form -->
+        <div id="phoneOtpForm" class="phone-otp-form">
+            <button class="back-button" onclick="goBackToPhoneInput()">
+                <i class="fas fa-arrow-left"></i>
+                Back
+            </button>
+            
+            <div class="otp-header">
+                <div class="logo">EDURACK</div>
+                <h2 class="otp-title">Verify Phone Number</h2>
+                <p class="otp-subtitle">Enter the 4-digit code sent to your phone</p>
+            </div>
+
+            <div class="phone-number-display" id="phoneNumberDisplay">
+                +91-9876543210
+            </div>
+
+            <div class="otp-input-group">
+                <input type="text" class="otp-digit" maxlength="1" oninput="handleOtpInput(this, 0)">
+                <input type="text" class="otp-digit" maxlength="1" oninput="handleOtpInput(this, 1)">
+                <input type="text" class="otp-digit" maxlength="1" oninput="handleOtpInput(this, 2)">
+                <input type="text" class="otp-digit" maxlength="1" oninput="handleOtpInput(this, 3)">
+            </div>
+
+            <button class="submit-btn" onclick="verifyOtp()" id="verifyOtpBtn">
+                <div class="loading-spinner"></div>
+                Verify OTP
+            </button>
+
+            <div class="resend-otp">
+                <span id="resendTimer">Resend OTP in 30s</span>
+                <a href="#" class="resend-link disabled" id="resendLink" onclick="resendOtp()">Resend OTP</a>
+            </div>
+        </div>
+
         <!-- User Details Form (Shown after signup) -->
         <div id="userDetailsForm" class="user-details-form">
             <div class="details-header">
@@ -803,6 +1425,10 @@
         let currentAuthType = 'login';
         let isSignupFlow = false;
         let userAuthData = {};
+        let phoneNumber = '';
+        let otpTimer = null;
+        let resendCountdown = 30;
+        const correctOtp = '1234'; // Dummy OTP for demo
 
         // Tab switching functionality
         function switchTab(tab) {
@@ -847,6 +1473,12 @@
 
         // Social login functionality
         function socialLogin(provider, type) {
+            if (provider === 'phone') {
+                // Show phone number input form
+                showPhoneNumberForm(type);
+                return;
+            }
+
             const button = event.target.closest('.social-btn');
             const spinner = button.querySelector('.loading-spinner') || createSpinner();
             
@@ -884,20 +1516,307 @@
             }, 2000);
         }
 
-        // Email login handler
-        function handleEmailLogin(event) {
+        // Show phone number input form
+        function showPhoneNumberForm(type) {
+            isSignupFlow = (type === 'signup');
+            
+            document.getElementById('authForm').style.display = 'none';
+            document.getElementById('phoneNumberForm').classList.add('active');
+            
+            // Focus phone input
+            setTimeout(() => {
+                document.querySelector('.phone-input').focus();
+            }, 300);
+        }
+
+        // Handle phone number submission
+        function handlePhoneSubmit(event) {
             event.preventDefault();
             const form = event.target;
-            const email = form.querySelector('input[type="email"]').value;
-            const password = form.querySelector('input[type="password"]').value;
+            const phoneInput = form.querySelector('.phone-input');
+            const phoneValue = phoneInput.value.trim();
             const submitBtn = form.querySelector('.submit-btn');
             const spinner = submitBtn.querySelector('.loading-spinner');
             
-            // Validate form
-            if (!validateEmail(email) || password.length < 6) {
-                showFormErrors(form);
+            // Validate phone number (10 digits)
+            if (!/^\d{10}$/.test(phoneValue)) {
+                phoneInput.classList.add('error');
+                const errorMsg = form.querySelector('.error-message');
+                errorMsg.style.display = 'block';
                 return;
             }
+            
+            // Clear any previous errors
+            phoneInput.classList.remove('error');
+            const errorMsg = form.querySelector('.error-message');
+            errorMsg.style.display = 'none';
+            
+            // Show loading
+            submitBtn.disabled = true;
+            spinner.style.display = 'inline-block';
+            submitBtn.innerHTML = '<div class="loading-spinner" style="display: inline-block;"></div>Sending OTP...';
+            
+            // Store phone number
+            phoneNumber = '+91-' + phoneValue;
+            
+            // Simulate API call
+            setTimeout(() => {
+                showPhoneOtpForm();
+                
+                submitBtn.disabled = false;
+                spinner.style.display = 'none';
+                submitBtn.innerHTML = '<div class="loading-spinner"></div>Send OTP';
+            }, 2000);
+        }
+
+        // Show phone OTP form
+        function showPhoneOtpForm() {
+            document.getElementById('phoneNumberForm').classList.remove('active');
+            document.getElementById('phoneOtpForm').classList.add('active');
+            document.getElementById('phoneNumberDisplay').textContent = phoneNumber;
+            
+            // Start resend timer
+            startResendTimer();
+            
+            // Focus first OTP input
+            document.querySelector('.otp-digit').focus();
+        }
+
+        // Go back to auth form
+        function goBackToAuth() {
+            document.getElementById('phoneNumberForm').classList.remove('active');
+            document.getElementById('authForm').style.display = 'block';
+            
+            // Clear phone input
+            document.querySelector('.phone-input').value = '';
+        }
+                // Go back to phone input
+        function goBackToPhoneInput() {
+            document.getElementById('phoneOtpForm').classList.remove('active');
+            document.getElementById('phoneNumberForm').classList.add('active');
+            
+            // Clear OTP inputs
+            document.querySelectorAll('.otp-digit').forEach(input => {
+                input.value = '';
+                input.classList.remove('filled', 'error');
+            });
+            
+            // Clear timer
+            if (otpTimer) {
+                clearInterval(otpTimer);
+                otpTimer = null;
+            }
+        }
+
+        // Handle OTP input
+        function handleOtpInput(input, index) {
+            const value = input.value;
+            
+            // Only allow numbers
+            if (!/^\d$/.test(value)) {
+                input.value = '';
+                return;
+            }
+            
+            // Add filled class
+            input.classList.add('filled');
+            input.classList.remove('error');
+            
+            // Move to next input
+            if (value && index < 3) {
+                const nextInput = document.querySelectorAll('.otp-digit')[index + 1];
+                nextInput.focus();
+            }
+            
+            // Check if all inputs are filled
+            const allInputs = document.querySelectorAll('.otp-digit');
+            const allFilled = Array.from(allInputs).every(inp => inp.value);
+            
+            if (allFilled) {
+                // Auto-verify after a short delay
+                setTimeout(() => {
+                    verifyOtp();
+                }, 500);
+            }
+        }
+
+        // Verify OTP
+        function verifyOtp() {
+            const otpInputs = document.querySelectorAll('.otp-digit');
+            const enteredOtp = Array.from(otpInputs).map(input => input.value).join('');
+            const verifyBtn = document.getElementById('verifyOtpBtn');
+            const spinner = verifyBtn.querySelector('.loading-spinner');
+            
+            if (enteredOtp.length !== 4) {
+                return;
+            }
+            
+            // Show loading
+            verifyBtn.disabled = true;
+            spinner.style.display = 'inline-block';
+            verifyBtn.innerHTML = '<div class="loading-spinner" style="display: inline-block;"></div>Verifying...';
+            
+            // Simulate API verification
+            setTimeout(() => {
+                if (enteredOtp === correctOtp) {
+                    // OTP is correct
+                    userAuthData = {
+                        provider: 'phone',
+                        type: isSignupFlow ? 'signup' : 'login',
+                        phone: phoneNumber
+                    };
+                    
+                    if (isSignupFlow) {
+                        showUserDetailsForm();
+                    } else {
+                        // For login, check if user details exist
+                        const existingUserData = localStorage.getItem('edurackUserData');
+                        if (existingUserData) {
+                            redirectToHome();
+                        } else {
+                            showUserDetailsForm();
+                        }
+                    }
+                } else {
+                    // OTP is incorrect
+                    otpInputs.forEach(input => {
+                        input.classList.add('error');
+                        input.value = '';
+                        input.classList.remove('filled');
+                    });
+                    
+                    // Focus first input
+                    otpInputs[0].focus();
+                    
+                    verifyBtn.disabled = false;
+                    spinner.style.display = 'none';
+                    verifyBtn.innerHTML = '<div class="loading-spinner"></div>Verify OTP';
+                }
+            }, 2000);
+        }
+
+        // Start resend timer
+        function startResendTimer() {
+            resendCountdown = 30;
+            const timerElement = document.getElementById('resendTimer');
+            const resendLink = document.getElementById('resendLink');
+            
+            resendLink.classList.add('disabled');
+            timerElement.style.display = 'inline';
+            
+            otpTimer = setInterval(() => {
+                resendCountdown--;
+                timerElement.textContent = `Resend OTP in ${resendCountdown}s`;
+                
+                if (resendCountdown <= 0) {
+                    clearInterval(otpTimer);
+                    timerElement.style.display = 'none';
+                    resendLink.classList.remove('disabled');
+                }
+            }, 1000);
+        }
+
+        // Resend OTP
+        function resendOtp() {
+            if (document.getElementById('resendLink').classList.contains('disabled')) {
+                return;
+            }
+            
+            // Simulate resending OTP
+            startResendTimer();
+            
+            // Show feedback
+            const resendLink = document.getElementById('resendLink');
+            const originalText = resendLink.textContent;
+            resendLink.textContent = 'OTP Sent!';
+            
+            setTimeout(() => {
+                resendLink.textContent = originalText;
+            }, 2000);
+        }
+
+        // Show user details form
+        function showUserDetailsForm() {
+            document.getElementById('authForm').style.display = 'none';
+            document.getElementById('phoneNumberForm').classList.remove('active');
+            document.getElementById('phoneOtpForm').classList.remove('active');
+            document.getElementById('userDetailsForm').classList.add('active');
+        }
+
+        // Handle user details submission
+        function handleUserDetails(event) {
+            event.preventDefault();
+            const form = event.target;
+            const submitBtn = form.querySelector('.submit-btn');
+            const spinner = submitBtn.querySelector('.loading-spinner');
+            
+            // Get form data
+            const formData = new FormData(form);
+            const targetExam = form.querySelector('select[name="exam"]')?.value || form.querySelectorAll('select')[0].value;
+            const currentClass = form.querySelector('select[name="class"]')?.value || form.querySelectorAll('select')[1].value;
+            const state = form.querySelector('select[name="state"]')?.value || form.querySelectorAll('select')[2].value;
+            
+            // Validate required fields
+            if (!targetExam || !currentClass || !state) {
+                // Show error for empty fields
+                form.querySelectorAll('select').forEach(select => {
+                    if (!select.value) {
+                        select.classList.add('error');
+                        select.parentElement.querySelector('.error-message').style.display = 'block';
+                    } else {
+                        select.classList.remove('error');
+                        select.parentElement.querySelector('.error-message').style.display = 'none';
+                    }
+                });
+                return;
+            }
+            
+            // Show loading
+            submitBtn.disabled = true;
+            spinner.style.display = 'inline-block';
+            submitBtn.innerHTML = '<div class="loading-spinner" style="display: inline-block;"></div>Setting up...';
+            
+            // Simulate API call
+            setTimeout(() => {
+                // Store user data
+                const userData = {
+                    ...userAuthData,
+                    targetExam,
+                    currentClass,
+                    state,
+                    setupComplete: true,
+                    createdAt: new Date().toISOString()
+                };
+                
+                localStorage.setItem('edurackUserData', JSON.stringify(userData));
+                
+                // Show success message
+                showSuccessMessage();
+                
+                submitBtn.disabled = false;
+                spinner.style.display = 'none';
+                submitBtn.innerHTML = '<div class="loading-spinner"></div>Complete Setup';
+            }, 2000);
+        }
+
+        // Show success message
+        function showSuccessMessage() {
+            document.getElementById('userDetailsForm').classList.remove('active');
+            document.getElementById('successMessage').style.display = 'block';
+        }
+
+        // Redirect to home
+        function redirectToHome() {
+            // In a real app, this would redirect to the dashboard
+            window.location.href = 'Home.html';
+        }
+
+        // Handle email login
+        function handleEmailLogin(event) {
+            event.preventDefault();
+            const form = event.target;
+            const submitBtn = form.querySelector('.submit-btn');
+            const spinner = submitBtn.querySelector('.loading-spinner');
             
             // Show loading
             submitBtn.disabled = true;
@@ -906,40 +1825,33 @@
             
             // Simulate API call
             setTimeout(() => {
-                userAuthData = {
-                    provider: 'email',
-                    type: 'login',
-                    email: email
-                };
-                
-                // Check if user details exist
-                const existingUserData = localStorage.getItem('edurackUserData');
-                if (existingUserData) {
-                    redirectToHome();
-                } else {
-                    showUserDetailsForm();
-                }
+                // For demo, assume login is successful
+                redirectToHome();
                 
                 submitBtn.disabled = false;
                 spinner.style.display = 'none';
-                submitBtn.innerHTML = 'Sign In';
+                submitBtn.innerHTML = '<div class="loading-spinner"></div>Sign In';
             }, 2000);
         }
 
-        // Email signup handler
+        // Handle email signup
         function handleEmailSignup(event) {
             event.preventDefault();
             const form = event.target;
+            const submitBtn = form.querySelector('.submit-btn');
+            const spinner = submitBtn.querySelector('.loading-spinner');
+            
+            // Get form data
             const name = form.querySelector('input[type="text"]').value;
             const email = form.querySelector('input[type="email"]').value;
             const password = form.querySelectorAll('input[type="password"]')[0].value;
             const confirmPassword = form.querySelectorAll('input[type="password"]')[1].value;
-            const submitBtn = form.querySelector('.submit-btn');
-            const spinner = submitBtn.querySelector('.loading-spinner');
             
-            // Validate form
-            if (!name || !validateEmail(email) || password.length < 6 || password !== confirmPassword) {
-                showFormErrors(form);
+            // Validate passwords match
+            if (password !== confirmPassword) {
+                const confirmInput = form.querySelectorAll('input[type="password"]')[1];
+                confirmInput.classList.add('error');
+                confirmInput.parentElement.parentElement.querySelector('.error-message').style.display = 'block';
                 return;
             }
             
@@ -948,134 +1860,25 @@
             spinner.style.display = 'inline-block';
             submitBtn.innerHTML = '<div class="loading-spinner" style="display: inline-block;"></div>Creating Account...';
             
+            // Store user data
+            userAuthData = {
+                provider: 'email',
+                type: 'signup',
+                name: name,
+                email: email
+            };
+            
             // Simulate API call
             setTimeout(() => {
-                userAuthData = {
-                    provider: 'email',
-                    type: 'signup',
-                    name: name,
-                    email: email
-                };
-                
                 showUserDetailsForm();
                 
                 submitBtn.disabled = false;
                 spinner.style.display = 'none';
-                submitBtn.innerHTML = 'Create Account';
+                submitBtn.innerHTML = '<div class="loading-spinner"></div>Create Account';
             }, 2000);
         }
 
-        // User details form handler
-        function handleUserDetails(event) {
-            event.preventDefault();
-            const form = event.target;
-            const exam = form.querySelector('select').value;
-            const classLevel = form.querySelectorAll('select')[1].value;
-            const state = form.querySelectorAll('select')[2].value;
-            const submitBtn = form.querySelector('.submit-btn');
-            const spinner = submitBtn.querySelector('.loading-spinner');
-            
-            // Validate form
-            if (!exam || !classLevel || !state) {
-                showFormErrors(form);
-                return;
-            }
-            
-            // Show loading
-            submitBtn.disabled = true;
-            spinner.style.display = 'inline-block';
-            submitBtn.innerHTML = '<div class="loading-spinner" style="display: inline-block;"></div>Setting Up...';
-            
-            // Update progress
-            updateProgress(3);
-            
-            // Simulate API call
-            setTimeout(() => {
-                // Save user data
-                const completeUserData = {
-                    ...userAuthData,
-                    exam: exam,
-                    class: classLevel,
-                    state: state,
-                    setupComplete: true,
-                    createdAt: new Date().toISOString()
-                };
-                
-                localStorage.setItem('edurackUserData', JSON.stringify(completeUserData));
-                
-                // Show success message
-                showSuccessMessage();
-                
-                submitBtn.disabled = false;
-                spinner.style.display = 'none';
-                submitBtn.innerHTML = 'Complete Setup';
-            }, 2000);
-        }
-
-        // Show user details form
-        function showUserDetailsForm() {
-            document.getElementById('authForm').style.display = 'none';
-            document.getElementById('userDetailsForm').classList.add('active');
-            updateProgress(1);
-        }
-
-        // Show success message
-        function showSuccessMessage() {
-            document.getElementById('userDetailsForm').style.display = 'none';
-            document.getElementById('successMessage').style.display = 'block';
-        }
-
-        // Update progress indicator
-        function updateProgress(step) {
-            const steps = document.querySelectorAll('.progress-step');
-            steps.forEach((stepEl, index) => {
-                if (index < step) {
-                    stepEl.classList.add('active');
-                } else {
-                    stepEl.classList.remove('active');
-                }
-            });
-        }
-
-        // Redirect to home page
-        function redirectToHome() {
-            // Add loading effect
-            document.body.style.opacity = '0.7';
-            
-            setTimeout(() => {
-                window.location.href = 'home.html';
-            }, 1000);
-        }
-
-        // Utility functions
-        function validateEmail(email) {
-            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-            return emailRegex.test(email);
-        }
-
-        function showFormErrors(form) {
-            const inputs = form.querySelectorAll('input, select');
-            inputs.forEach(input => {
-                if (!input.value || (input.type === 'email' && !validateEmail(input.value))) {
-                    input.classList.add('error');
-                    const errorMsg = input.parentElement.querySelector('.error-message');
-                    if (errorMsg) errorMsg.style.display = 'block';
-                } else {
-                    input.classList.remove('error');
-                    const errorMsg = input.parentElement.querySelector('.error-message');
-                    if (errorMsg) errorMsg.style.display = 'none';
-                }
-            });
-            
-            // Check password match for signup
-            const passwords = form.querySelectorAll('input[type="password"]');
-            if (passwords.length === 2 && passwords[0].value !== passwords[1].value) {
-                passwords[1].classList.add('error');
-                const errorMsg = passwords[1].parentElement.parentElement.querySelector('.error-message');
-                if (errorMsg) errorMsg.style.display = 'block';
-            }
-        }
-
+        // Create spinner element
         function createSpinner() {
             const spinner = document.createElement('div');
             spinner.className = 'loading-spinner';
@@ -1083,46 +1886,47 @@
             return spinner;
         }
 
-        // Initialize page
-        document.addEventListener('DOMContentLoaded', () => {
-            // Check if user came from pricing page
-            const loginData = localStorage.getItem('edurackLoginData');
-            if (loginData) {
-                console.log('User came from pricing page:', loginData);
-                // You can use this data to pre-fill forms or show specific messaging
-            }
+        // Add keyboard navigation for OTP inputs
+        document.addEventListener('DOMContentLoaded', function() {
+            const otpInputs = document.querySelectorAll('.otp-digit');
             
-            // Check if user is already logged in
-            const userData = localStorage.getItem('edurackUserData');
-            if (userData) {
-                const user = JSON.parse(userData);
-                if (user.setupComplete) {
-                    redirectToHome();
-                }
-            }
-            
-            // Add input event listeners for real-time validation
-            document.querySelectorAll('input, select').forEach(input => {
-                input.addEventListener('input', () => {
-                    input.classList.remove('error');
-                    const errorMsg = input.parentElement.querySelector('.error-message') || 
-                                   input.parentElement.parentElement.querySelector('.error-message');
-                    if (errorMsg) errorMsg.style.display = 'none';
+            otpInputs.forEach((input, index) => {
+                input.addEventListener('keydown', function(e) {
+                    // Handle backspace
+                    if (e.key === 'Backspace' && !input.value && index > 0) {
+                        const prevInput = otpInputs[index - 1];
+                        prevInput.focus();
+                        prevInput.value = '';
+                        prevInput.classList.remove('filled');
+                    }
+                    
+                    // Handle arrow keys
+                    if (e.key === 'ArrowLeft' && index > 0) {
+                        otpInputs[index - 1].focus();
+                    }
+                    if (e.key === 'ArrowRight' && index < otpInputs.length - 1) {
+                        otpInputs[index + 1].focus();
+                    }
+                });
+                
+                input.addEventListener('paste', function(e) {
+                    e.preventDefault();
+                    const pastedData = e.clipboardData.getData('text');
+                    const digits = pastedData.replace(/\D/g, '').slice(0, 4);
+                    
+                    digits.split('').forEach((digit, i) => {
+                        if (otpInputs[i]) {
+                            otpInputs[i].value = digit;
+                            otpInputs[i].classList.add('filled');
+                        }
+                    });
+                    
+                    if (digits.length === 4) {
+                        setTimeout(() => verifyOtp(), 500);
+                    }
                 });
             });
         });
-
-        // Handle back button
-        window.addEventListener('popstate', (event) => {
-            // Prevent going back during the signup flow
-            if (document.getElementById('userDetailsForm').classList.contains('active') || 
-                document.getElementById('successMessage').style.display === 'block') {
-                history.pushState(null, null, location.href);
-            }
-        });
-
-        // Push initial state
-        history.pushState(null, null, location.href);
     </script>
 </body>
 </html>
